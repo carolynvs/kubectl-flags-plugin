@@ -2,12 +2,15 @@
 Example kubectl plugin that dumps all flags passed in. Useful when learning
 how to build your own plugin.
 
-## Deploy the plugin
-```console
-$ make deploy
-mkdir -p ~/.kube/plugins/flags
-cp plugin.yaml ~/.kube/plugins/flags/
+## Install the plugin
 
+```console
+$ curl -sLO https://github.com/carolynvs/kubectl-flags-plugin/releases/download/latest/flags.zip
+
+$ unzip flags.zip -d ~/.kube/plugins/
+Archive:  flags.zip
+   creating: ~/.kube/plugins/flags/
+  inflating: ~/.kube/plugins/flags/plugin.yaml
 ```
 
 ## Try the plugin
@@ -18,7 +21,7 @@ kubectl plugin flags --foo=bar --output=json | grep KUBECTL
 KUBECTL_PLUGINS_GLOBAL_FLAG_TOKEN=
 KUBECTL_PLUGINS_GLOBAL_FLAG_PASSWORD=
 KUBECTL_PLUGINS_GLOBAL_FLAG_CLIENT_CERTIFICATE=
-KUBECTL_PLUGINS_GLOBAL_FLAG_CACHE_DIR=/Users/carolynvs/.kube/http-cache
+KUBECTL_PLUGINS_GLOBAL_FLAG_CACHE_DIR=~/.kube/http-cache
 KUBECTL_PLUGINS_GLOBAL_FLAG_KUBECONFIG=
 KUBECTL_PLUGINS_GLOBAL_FLAG_AS_GROUP=[]
 KUBECTL_PLUGINS_GLOBAL_FLAG_CLUSTER=
@@ -51,4 +54,11 @@ KUBECTL_PLUGINS_GLOBAL_FLAG_LOG_FLUSH_FREQUENCY=5s
 KUBECTL_PLUGINS_GLOBAL_FLAG_USER=
 KUBECTL_PLUGINS_GLOBAL_FLAG_VMODULE=
 KUBECTL_PLUGINS_DESCRIPTOR_NAME=flags
+```
+
+## Build the plugin
+```console
+$ make deploy
+mkdir -p ~/.kube/plugins/flags
+cp plugin.yaml ~/.kube/plugins/flags/
 ```
